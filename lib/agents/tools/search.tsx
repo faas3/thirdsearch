@@ -26,12 +26,9 @@ export const searchTool = ({ uiStream, fullResponse }: ToolProps) => ({
     const filledQuery =
       query.length < 5 ? query + ' '.repeat(5 - query.length) : query
     let searchResult
-    const searchAPI: 'tavily' | 'exa' = 'tavily'
+    const searchAPI: 'tavily' | 'exa' = 'exa'
     try {
-      searchResult =
-        searchAPI === 'tavily'
-          ? await tavilySearch(filledQuery, max_results, search_depth)
-          : await exaSearch(query)
+      searchResult = await exaSearch(query)
     } catch (error) {
       console.error('Search API error:', error)
       hasError = true
